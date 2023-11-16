@@ -5,7 +5,6 @@ import { Message } from '../messages/message.entity';
 
 
 @Entity()
-
 export class Room{
     @PrimaryGeneratedColumn()
     id:number;
