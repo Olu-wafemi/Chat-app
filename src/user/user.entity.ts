@@ -1,4 +1,5 @@
 import { Message } from '../messages/message.entity';
+import { Room } from '../room/room.entity';
 import { Entity, Column, PrimaryGeneratedColumn
 ,OneToMany } from "typeorm";
 
