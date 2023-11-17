@@ -16,4 +16,21 @@ export class MessageService{
         return await this.messageRepository.find();
     }
 
+    async findById(id:number): Promise<Message| undefined>{
+        return await this.messageRepository.findOne({where: {id}})
+    }
+
+    async findByRoom(roomId: number): Promise<Message[]>{
+        return await this.messageRepository.find({where: {room: {id: roomId}}})
+    }
+
+    async create(message: Partial<Message>): Promise<Message>{
+        const newMessage = this.messageRepository.create(message)
+        return await this.messageRepository.save(newMessage)
+    }
+
+    async delete(id: number): Promise<void>{
+        await this.messageRepository.delete(id)
+    }
+
 }
