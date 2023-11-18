@@ -33,4 +33,9 @@ export class MessageService{
         await this.messageRepository.delete(id)
     }
 
+    async update(id: number): Promise<void>{
+        await this.messageRepository.delete(id)
+    }
+
+
 }
