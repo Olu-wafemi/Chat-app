@@ -1,4 +1,4 @@
-import { Controller,Get } from "@nestjs/common";
+import { Body, Controller, Get, Param, Post, Delete } from '@nestjs/common';
 
 import { MessageService} from "./message.service";
 import { Message } from './message.entity';
@@ -13,9 +13,24 @@ export class MessagesController{
         
     }
 
-    @Get()
-    findbyId(id: number): Promise<Message| undefined>{
-        return this.messagesservice.findById(id)
+    @Get(':id')
+    findbyId(@Param('id') id: String): Promise<Message| undefined>{
+        return this.messagesservice.findById(Number(id))
+
+    }
+    @Get('room/:roomId')
+    findByRoom(@Param('roomId') roomId: string): Promise<Message[]>{
+        return this.messagesservice.findByRoom(Number(roomId))
+    }
+
+    @Post()
+    create(@Body() message: Partial<Message>): Promise<Message>{
+        return this.messagesservice.create(message)
+    }
+
+    @Delete(':id')
+    delete(@Param('id') id: string): Promise<void>{
+        return this.messagesservice.delete(Number(id))
 
     }
 }

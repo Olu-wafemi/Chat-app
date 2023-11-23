@@ -4,7 +4,7 @@ import { MessageService } from '../messages/message.service';
 import { Message } from '../messages/message.entity';
 
 @Controller('messages')
-export class MessageController {
+export class RoomController {
     constructor(private readonly messageService: MessageService){}
 
     @Get()
