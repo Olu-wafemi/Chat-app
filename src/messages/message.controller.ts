@@ -1,11 +1,16 @@
-import { Body, Controller, Get, Param, Post, Delete } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Delete, UsePipes, ValidationPipe } from '@nestjs/common';
 
 import { MessageService} from "./message.service";
 import { Message } from './message.entity';
+import { WebsocketGateway } from 'src/websocket/websocket.gateway';
 
 @Controller('messages')
 export class MessagesController{
-    constructor(private readonly messagesservice: MessageService){}
+    constructor(
+        private readonly messagesservice: MessageService,
+        private readonly websocketgaeway: WebsocketGateway
+
+        ){}
 
         @Get()
         findAll(){
@@ -24,8 +29,13 @@ export class MessagesController{
     }
 
     @Post()
+    @UsePipes(ValidationPipe)
+
     create(@Body() message: Partial<Message>): Promise<Message>{
-        return this.messagesservice.create(message)
+
+        const newMessage = this.messagesservice.create(message)
+        this.websocketgaeway.handleChat(null, {roomId: message.room, message:newMessage})
+        return newMessage
     }
 
     @Delete(':id')
