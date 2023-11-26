@@ -1,17 +1,21 @@
 import { Module} from "@nestjs/common";
 import { TypeOrmModule} from "@nestjs/typeorm";
+import { Message } from "src/messages/message.entity";
+import { Room } from '../room/room.entity';
+import { User } from '../user/user.entity';
+
 
 @Module({
 
     imports:[
         TypeOrmModule.forRoot({
-            type: 'mariadb',
+            type: 'postgres',
             host:'localhost',
-            port:3306,
-            username:'root',
-            password:'Oluw@fem4',
-            database: 'test_database',
-            entities: [__dirname+ '/../**/*.entity{.ts,.js}'],
+            port:5432,
+            username:'effemm',
+            password:'Oluwafemi',
+            database: 'chat_app',
+            entities: [Message, Room, User],
             synchronize: true
         })
     ]
