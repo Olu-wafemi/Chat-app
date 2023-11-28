@@ -9,16 +9,28 @@ export class WebsocketGateway implements OnGatewayInit{
     private server: Server
 
     afterInit(server: Server) {
-        this.server = server;
+      //  this.server = server;
+      console.log("Websocket Gateway initialized")
         
     }
+    handleConnection(client:any, ...args: any[]){
+        console.log('client connected ')
+    }
 
-    @SubscribeMessage('chat')
-    handleChat(client: any, payload: any ): void{
-        const {roomId, message} = payload
+    handleDisconnect(client: any){
+        console.log('Client Disconnected')
+    }
 
-        this.server.to('room_$(roomId)').emit('chat', message)
-        
+
+    //@SubscribeMessage('chat')
+    handleChat(room: string, message: any ){
+
+        console.log(message)
+       
+
+        //this.server.to('room_$(roomId)').emit('chat', message)
+        this.server.to(room).emit('chat', message);
+
 
     }
 

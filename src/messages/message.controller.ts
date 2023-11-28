@@ -31,11 +31,11 @@ export class MessagesController{
     @Post()
     @UsePipes(ValidationPipe)
 
-    create(@Body() message: Partial<Message>): Promise<Message>{
+    async create(@Body() messageDto: any): Promise<any>{
 
-        const newMessage = this.messagesservice.create(message)
-        this.websocketgaeway.handleChat(null, {roomId: message.room, message:newMessage})
-        return newMessage
+        const message: any = await this.messagesservice.create(messageDto);
+        this.websocketgaeway.handleChat(message.room, message);
+        return message;
     }
 
     @Delete(':id')

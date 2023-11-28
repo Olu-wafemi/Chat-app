@@ -12,6 +12,8 @@ export class RoomService {
     ){}
 
     async findAll(): Promise<Room[]>{
+
+        
         return this.roomRepository.find()
     }
 
