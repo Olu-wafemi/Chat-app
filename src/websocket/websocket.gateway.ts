@@ -25,7 +25,7 @@ export class WebsocketGateway implements OnGatewayInit{
     //@SubscribeMessage('chat')
     handleChat(room: string, message: any ){
 
-        console.log(message)
+       // console.log(message)
        
 
         //this.server.to('room_$(roomId)').emit('chat', message)
