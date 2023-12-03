@@ -20,5 +20,4 @@ describe('MessagesController', () => {
     expect(controller).toBeDefined();
   });
 
-  // Add more tests as needed
 });
