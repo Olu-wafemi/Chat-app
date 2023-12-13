@@ -10,7 +10,7 @@ describe("websocketgateway", ()=>{
         const module: TestingModule = await Test.createTestingModule({
             providers: [WebsocketGateway]
         }).compile();
-       // gateway = module.get<WebsocketGateway>(WebsocketGateway);
+        gateway = module.get<WebsocketGateway>(WebsocketGateway);
 
         it('shoule be defined', ()=>{
             expect(gateway).toBeDefined();
