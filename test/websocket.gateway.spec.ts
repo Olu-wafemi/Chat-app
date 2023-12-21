@@ -12,7 +12,7 @@ describe("websocketgateway", ()=>{
         }).compile();
         gateway = module.get<WebsocketGateway>(WebsocketGateway);
 
-        it('shoule be defined', ()=>{
+        it('should be defined', ()=>{
             expect(gateway).toBeDefined();
         })
 
