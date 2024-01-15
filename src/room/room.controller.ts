@@ -17,6 +17,8 @@ export class RoomController {
 
     }
 
+    //This is a test spacer
+
     @Get('room/:roomId')
     findByRoom(@Param('roomId') roomId: string): Promise<Message[]>{
         return this.messageService.findByRoom(Number(roomId));
